@@ -1,0 +1,50 @@
+name: .NET Framework Build
+
+on:
+  push:
+    branches:
+      - master  # 触发条件：推送代码到 master 分支时
+  pull_request:
+    branches:
+      - master  # 触发条件：提交拉取请求到 master 分支时
+
+jobs:
+  build:
+    runs-on: windows-latest  # 使用 Windows 环境
+
+    steps:
+    - name: Checkout code  # 检出代码
+      uses: actions/checkout@v2
+
+    - name: Setup MSBuild  # 设置 MSBuild
+      uses: microsoft/setup-msbuild@v1
+      with:
+       vsVersion: '2019'  # 指定 Visual Studio 版本
+
+    - name: Setup NuGet  # 设置 NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+
+    - name: Restore NuGet packages  # 恢复 NuGet 包
+      run: nuget restore ListViewTest.sln
+
+    - name: Build solution  # 构建解决方案
+      run: msbuild ListViewTest.sln /p:Configuration=Release /p:Platform="Any CPU"
+
+    - name: List output files
+      run: dir bin\Release  # 确认输出文件
+    # - name: List project files
+    #   run: dir D:\a\ListViewDemo\ListViewDemo  # 确认输出文件
+
+   # - name: Run tests  # 运行测试（如果适用）
+   #  if: success()
+   #   run: |
+        # 如果你有单元测试项目，使用 MSTest、NUnit 或 xUnit 运行测试
+        # 例如，使用 MSTest：
+   #    vstest.console.exe "path/to/your/test/project.dll" /Platform:x64 /Framework:.NETFramework,Version=v4.7.2
+
+    - name: Publish artifacts   # 发布构建产物（可选）
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-output
+        path: bin/Release
