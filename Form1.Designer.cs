@@ -52,7 +52,7 @@ namespace ListViewTest
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(168, 16);
             this.label1.TabIndex = 1;
-            this.label1.Text = "请点击【确定】按钮。";
+            this.label1.Text = "点击【确定】有惊喜。";
             // 
             // Form1
             // 
