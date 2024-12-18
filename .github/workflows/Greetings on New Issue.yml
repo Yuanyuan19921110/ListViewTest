@@ -1,0 +1,36 @@
+
+name: Greetings on New Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write  # 允许写入 Issues
+
+    steps:
+    - name: Send welcome message
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const issueNumber = context.issue.number;
+          const owner = context.repo.owner;
+          const repo = context.repo.repo;
+
+          // 发送欢迎信息到 Issue
+          await github.rest.issues.createComment({
+            owner,
+            repo,
+            issue_number: issueNumber,
+            body: `
+              Welcome to our repository! 🎉
+
+              Thank you for opening this issue. We appreciate your contribution and will review it as soon as possible.
+
+              If you have any questions or need assistance, feel free to ask!
+            `
+          });
