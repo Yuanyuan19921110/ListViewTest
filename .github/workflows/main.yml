@@ -11,6 +11,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest  # 使用 Windows 环境
+    environment: production  # 指定使用的环境
 
     steps:
     - name: Checkout code  # 检出代码
