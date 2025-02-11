@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - master  # 触发条件：推送代码到 master 分支时
-  pull_request:
-    branches:
-      - master  # 触发条件：提交拉取请求到 master 分支时
+  #pull_request:
+    #branches:
+     # - master  # 触发条件：提交拉取请求到 master 分支时
 
 jobs:
   build:
