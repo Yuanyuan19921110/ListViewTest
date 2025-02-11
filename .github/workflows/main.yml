@@ -3,7 +3,7 @@ name: .NET Framework Build
 on:
   push:
     branches:
-      - master  # 触发条件：推送代码到 master 分支时
+      - master  # 触发条件：推送代码到 master 分支时  无
   pull_request:
     branches:
       - master  # 触发条件：提交拉取请求到 master 分支时
@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest  # 使用 Windows 环境
-    environment: production  # 指定使用的环境
+    environment: development  # 指定使用的环境 development  production
 
     steps:
     - name: Checkout code  # 检出代码
@@ -45,7 +45,7 @@ jobs:
 
     - name: Publish artifacts   # 发布构建产物（可选）
       if: success()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build-output
         path: bin/Release
