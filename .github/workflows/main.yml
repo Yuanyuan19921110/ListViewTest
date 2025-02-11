@@ -4,14 +4,14 @@ on:
   push:
     branches:
       - master  # 触发条件：推送代码到 master 分支时
-  #pull_request:
-    #branches:
-     # - master  # 触发条件：提交拉取请求到 master 分支时
+  pull_request:
+    branches:
+      - master  # 触发条件：提交拉取请求到 master 分支时
 
 jobs:
   build:
     runs-on: windows-latest  # 使用 Windows 环境
-   # environment: development  # 指定使用的环境 development  production
+    environment: development  # 指定使用的环境 development  production
 
     steps:
     - name: Checkout code  # 检出代码
