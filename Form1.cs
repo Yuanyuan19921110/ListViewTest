@@ -14,13 +14,14 @@ namespace ListViewTest
     {
         public Form1()
         {
+
             //0211
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // 显示消息框，询问用户是否打开新页面
+            // 显示消息框，询问用户是否打开新页面2024199
             DialogResult result = MessageBox.Show("确定打开图片吗？","提示",MessageBoxButtons.YesNoCancel);
 
             if (result==DialogResult.Yes) 
@@ -31,6 +32,7 @@ namespace ListViewTest
         }
         private void openImage() 
         {
+            //123
             Form imageForm = new Form();
             PictureBox pictureBox = new PictureBox();
 
